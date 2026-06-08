@@ -2,8 +2,11 @@ package com.ride.main;
 
 import java.util.Scanner;
 
+
+
 import com.ride.service.DriverService;
 import com.ride.service.RidesService;
+import com.ride.service.TransactionService;
 import com.ride.service.UsersService;
 import com.ride.service.VehicleService;
 
@@ -54,6 +57,7 @@ public class RidesDriver {
                     break;
 
                 case 5:
+                	new TransactionService().TransactionMenu();
                     break;
 
                 case 6:

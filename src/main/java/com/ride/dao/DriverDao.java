@@ -23,6 +23,7 @@ public class DriverDao {
 			Driver d = new Driver();
 			System.out.print("Enter Driver Name -:  ");
 			String name = sc.nextLine();
+			sc.nextLine();
 			System.out.print("Enter Driver Email -: ");
 			String Email = sc.nextLine();
 			System.out.print("Enter Driver Phone -: ");
@@ -98,7 +99,7 @@ public class DriverDao {
 		}
 	}
 
-	public void displayById(int id) {
+	public void displayById(long id) {
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Driver> query = cb.createQuery(Driver.class);
@@ -124,7 +125,7 @@ public class DriverDao {
 		}
 	}
 
-	public void updateData(int id) {
+	public void updateData(long id) {
 
 		try {
 			Driver users = em.find(Driver.class, id);
@@ -222,7 +223,7 @@ public class DriverDao {
 		}
 	}
 
-	public void deleteData(int id) {
+	public void deleteData(long id) {
 
 		Driver users = em.find(Driver.class, id);
 		if (users != null) {

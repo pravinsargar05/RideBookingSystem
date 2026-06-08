@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Email;
 @Entity
 public class Driver {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	@Email(message = "Enter valid Email ")

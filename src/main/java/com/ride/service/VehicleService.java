@@ -39,7 +39,7 @@ public class VehicleService {
 
                 case 1: { 
 		                System.out.print("Enter Driver ID: ");
-		        		int id = sc.nextInt();
+		        		long id = sc.nextInt();
 		        		vehicleDao.insert(id);
                     System.out.println(" Vehicle Assign Successfully...");
                     break;
@@ -53,7 +53,7 @@ public class VehicleService {
 
                 case 3: {
                 	System.out.print("Enter Veicle ID: ");
-            		int id = sc.nextInt();
+            		long id = sc.nextLong();
             		vehicleDao.updateData(id);
                     System.out.println("Vehicle Data Updated Successfully...");
                     break;
@@ -61,7 +61,7 @@ public class VehicleService {
 
                 case 4: {
                 	System.out.print("Enter Vehicle ID: ");
-            		int id = sc.nextInt();
+            		long id = sc.nextLong();
             		vehicleDao.deleteData(id);
                 	System.out.println("Vehicle Data Deleted Successfully...");
                     break;
@@ -69,7 +69,7 @@ public class VehicleService {
                 
                 case 5: {
                 		System.out.print("Enter Vehicle ID: ");
-                		int id = sc.nextInt();
+                		long id = sc.nextLong();
                 		vehicleDao.displayById(id);
 	                  System.out.println("Displaying Vehicle Data with ID: " + id);
                 	break;

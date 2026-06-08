@@ -15,7 +15,7 @@ import jakarta.validation.constraints.PositiveOrZero;
 @Entity
 public class Users {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	@Email(message = "Enter valid email")
@@ -32,10 +32,10 @@ public class Users {
 		this.wallet_balancd = wallet_balancd;
 	}
 
-	@OneToMany(mappedBy = "users",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "users",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	List<Transaction> transaction;
 	
-	@OneToMany(mappedBy = "users",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "users",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	List<Rides> rides;
 
 	public long getId() {

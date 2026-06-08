@@ -1,5 +1,6 @@
 package com.ride.entity;
 
+import com.ride.enums.TransactionStatus;
 import com.ride.enums.TransactionType;
 
 import jakarta.persistence.Entity;
@@ -20,6 +21,18 @@ public class Transaction {
 	@Enumerated(EnumType.STRING)
 	private TransactionType type;
 	
+	@Enumerated(EnumType.STRING)
+	private TransactionStatus status;
+	
+	public TransactionStatus getStatus() {
+		return status;
+	}
+
+	
+	public void setStatus(TransactionStatus status) {
+		this.status = status;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private Users users;

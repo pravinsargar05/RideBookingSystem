@@ -14,7 +14,6 @@ public class UsersService {
 
 	public void usersMenu() {
 
-		
 		char continueChoice = 'n';
 		do {
 
@@ -30,8 +29,8 @@ public class UsersService {
 			System.out.print("Enter Your Choice: ");
 
 			int choice2;
-			while(true) {
-				
+			while (true) {
+
 				if (sc.hasNextInt()) {
 					choice2 = sc.nextInt();
 					break;
@@ -45,8 +44,8 @@ public class UsersService {
 			switch (choice2) {
 
 			case 1: {
-				
-				System.out.println("Enter User Name -:  ");
+
+				System.out.print("Enter User Name -:  ");
 				String name = sc.nextLine();
 //				for(int i=0;i<name.length();i++) {
 //					char ch = name.charAt(i);
@@ -57,24 +56,24 @@ public class UsersService {
 //					}
 //				}
 				sc.nextLine();
-				System.out.println("Enter User Email -: ");
+				System.out.print("Enter User Email -: ");
 				String Email = sc.nextLine();
-				System.out.println("Enter User Phone -: ");
+				System.out.print("Enter User Phone -: ");
 				long phone = sc.nextLong();
-				System.out.println("Enter Wallet Balance -: ");
+				System.out.print("Enter Wallet Balance -: ");
 				double W_bal = sc.nextDouble();
-				userDao.insert(name,Email,phone,W_bal);
+				userDao.insert(name, Email, phone, W_bal);
 				break;
 			}
 
 			case 2: {
 				List<Users> list = userDao.displayAll();
-				for(Users u:list) {
-					System.out.println("User ID: "+u.getId());
-					System.out.println("User Name: "+u.getName());
-					System.out.println("User Email: "+u.getEmail());
-					System.out.println("User Phone: "+u.getPhone());
-					System.out.println("User Wallet Balance: "+u.getWallet_balancd());
+				for (Users u : list) {
+					System.out.println("User ID: " + u.getId());
+					System.out.println("User Name: " + u.getName());
+					System.out.println("User Email: " + u.getEmail());
+					System.out.println("User Phone: " + u.getPhone());
+					System.out.println("User Wallet Balance: " + u.getWallet_balancd());
 					System.out.println("=============================================");
 				}
 				System.out.println("Displaying All Users...");
@@ -83,63 +82,63 @@ public class UsersService {
 
 			case 3: {
 				System.out.print("Enter User ID: ");
-				int id = sc.nextInt();
+				long id = sc.nextLong();
 
 				if (userDao.checkUser(id)) {
 
-				    int choice;
+					int choice;
 
-				    do {
-				        System.out.println("\n===== UPDATE USER =====");
-				        System.out.println("1. Update Name");
-				        System.out.println("2. Update Email");
-				        System.out.println("3. Update Phone");
-				        System.out.println("4. Save & Exit");
-				        System.out.print("Enter Choice: ");
+					do {
+						System.out.println("\n===== UPDATE USER =====");
+						System.out.println("1. Update Name");
+						System.out.println("2. Update Email");
+						System.out.println("3. Update Phone");
+						System.out.println("4. Save & Exit");
+						System.out.print("Enter Choice: ");
 
-				        choice = sc.nextInt();
-				        sc.nextLine();
+						choice = sc.nextInt();
+						sc.nextLine();
 
-				        switch (choice) {
+						switch (choice) {
 
-				        case 1:
-				            System.out.print("Enter New Name: ");
-				            String name = sc.nextLine();
-				            userDao.updateName(id, name);
-				            break;
+						case 1:
+							System.out.print("Enter New Name: ");
+							String name = sc.nextLine();
+							userDao.updateName(id, name);
+							break;
 
-				        case 2:
-				            System.out.print("Enter New Email: ");
-				            String email = sc.nextLine();
-				            userDao.updateEmail(id, email);
-				            break;
+						case 2:
+							System.out.print("Enter New Email: ");
+							String email = sc.nextLine();
+							userDao.updateEmail(id, email);
+							break;
 
-				        case 3:
-				            System.out.print("Enter New Phone: ");
-				            long phone = sc.nextLong();
-				            userDao.updatePhone(id, phone);
-				            break;
+						case 3:
+							System.out.print("Enter New Phone: ");
+							long phone = sc.nextLong();
+							userDao.updatePhone(id, phone);
+							break;
 
-				        case 4:
-				            System.out.println("Exit...");
-				            usersMenu();
-				            break;
+						case 4:
+							System.out.println("Exit...");
+							usersMenu();
+							break;
 
-				        default:
-				            System.out.println("Invalid Choice!");
-				        }
+						default:
+							System.out.println("Invalid Choice!");
+						}
 
-				    } while (choice != 4);
+					} while (choice != 4);
 
 				} else {
-				    System.out.println("User not found.");
-				    break;
+					System.out.println("User not found.");
+					break;
 				}
 			}
 
 			case 4: {
 				System.out.print("Enter User ID: ");
-				int id = sc.nextInt();
+				long id = sc.nextLong();
 				userDao.deleteData(id);
 				System.out.println("User Deleted Successfully...");
 				break;
@@ -147,15 +146,15 @@ public class UsersService {
 
 			case 5: {
 				System.out.print("Enter User ID: ");
-				int id = sc.nextInt();
+				long id = sc.nextLong();
 				List<Users> list = userDao.displayById(id);
-				
-				for(Users u:list) {
-					System.out.println("User ID: "+u.getId());
-					System.out.println("User Name: "+u.getName());
-					System.out.println("User Email: "+u.getEmail());
-					System.out.println("User Phone: "+u.getPhone());
-					System.out.println("User Wallet Balance: "+u.getWallet_balancd());
+
+				for (Users u : list) {
+					System.out.println("User ID: " + u.getId());
+					System.out.println("User Name: " + u.getName());
+					System.out.println("User Email: " + u.getEmail());
+					System.out.println("User Phone: " + u.getPhone());
+					System.out.println("User Wallet Balance: " + u.getWallet_balancd());
 					System.out.println("=============================================");
 				}
 				System.out.println("Displaying User with ID: " + id);
@@ -182,9 +181,9 @@ public class UsersService {
 				System.out.println("Invalid Choice...");
 			}
 			}
-			System.out.print("\nDo you want to continue Driver Operations? (y/n): ");
+			System.out.print("\nDo you want to continue Operations? (y/n): ");
 			continueChoice = sc.next().charAt(0);
-		}while(continueChoice=='y'||continueChoice=='Y');
-}
+		} while (continueChoice == 'y' || continueChoice == 'Y');
+	}
 
 }

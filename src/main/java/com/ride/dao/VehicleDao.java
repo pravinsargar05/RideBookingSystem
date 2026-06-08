@@ -18,7 +18,7 @@ public class VehicleDao {
 	static Scanner sc = new Scanner(System.in);
 	static EntityManager em = Connection.getEntityManagerFactory().createEntityManager();
 
-	public void insert(int id) {
+	public void insert(long id) {
 
 		try {
 			Driver driver = em.find(Driver.class, id);
@@ -57,9 +57,10 @@ public class VehicleDao {
 				default:
 					System.out.println("Invalid Vehicle Type!");
 				}
-				System.out.println("Enter Vehicle Name -: ");
+				System.out.print("Enter Vehicle Name -: ");
 				String name = sc.nextLine();
-				System.out.println("Enter Vehicle Number -: ");
+				sc.nextLine();
+				System.out.print("Enter Vehicle Number -: ");
 				String number = sc.nextLine();
 				
 				v.setName(name);
@@ -103,7 +104,7 @@ public class VehicleDao {
 		}
 	}
 
-	public void displayById(int id) {
+	public void displayById(long id) {
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Vehicle> query = cb.createQuery(Vehicle.class);
@@ -124,30 +125,30 @@ public class VehicleDao {
 		}
 	}
 
-	public void updateData(int id) {
+	public void updateData(long id) {
 
 		try {
 			Vehicle vehicle = em.find(Vehicle.class, id);
 			if (vehicle != null) {
-				System.out.println("Do you want to update Vehicle Name? (y/n)");
+				System.out.print("Do you want to update Vehicle Name? (y/n)");
 				char c = sc.next().charAt(0);
 				sc.nextLine(); // clear buffer
 
 				if (c == 'y' || c == 'Y') {
-					System.out.println("Enter New Vehicle Name: ");
+					System.out.print("Enter New Vehicle Name: ");
 					vehicle.setName(sc.nextLine());
 				}
-				System.out.println("Do you want to update Vehicle Number? (y/n)");
+				System.out.print("Do you want to update Vehicle Number? (y/n)");
 				char c2 = sc.next().charAt(0);
 				sc.nextLine(); // clear buffer
 
 				if (c2 == 'y' || c2 == 'Y') {
-					System.out.println("Enter New Vehicle Number: ");
+					System.out.print("Enter New Vehicle Number: ");
 					vehicle.setVehicle_No(sc.nextLine());
 				}
 				
 
-				System.out.println("Do you want to update Vehicle Type? (y/n)");
+				System.out.print("Do you want to update Vehicle Type? (y/n)");
 				char c1 = sc.next().charAt(0);
 				if (c1 == 'y' || c1 == 'Y') {
 					System.out.println("Select Vehicle Type:");
@@ -198,7 +199,7 @@ public class VehicleDao {
 		}
 	}
 
-	public void deleteData(int id) {
+	public void deleteData(long id) {
 
 		Vehicle vehicle = em.find(Vehicle.class, id);
 		if (vehicle != null) {

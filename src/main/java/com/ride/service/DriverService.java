@@ -49,7 +49,7 @@ public class DriverService {
 
                 case 3: {
                 	System.out.print("Enter Driver ID: ");
-            		int id = sc.nextInt();
+            		long id = sc.nextInt();
             		driverDao.updateData(id);
                     System.out.println("Driver Data Updated Successfully...");
                     break;
@@ -57,7 +57,7 @@ public class DriverService {
 
                 case 4: {
                 	System.out.print("Enter Driver ID: ");
-            		int id = sc.nextInt();
+            		long id = sc.nextInt();
             		driverDao.deleteData(id);
                 	System.out.println("Driver Deleted Successfully...");
                     break;
@@ -65,7 +65,7 @@ public class DriverService {
                 
                 case 5: {
                 		System.out.print("Enter Driver ID: ");
-                		int id = sc.nextInt();
+                		long id = sc.nextInt();
                 		driverDao.displayById(id);
 	                  System.out.println("Displaying Driver with ID: " + id);
                 	break;
@@ -86,7 +86,7 @@ public class DriverService {
                     System.out.println("Invalid Choice...");
                 }
             }
-            System.out.print("\nDo you want to continue Driver Operations? (y/n): ");
+            System.out.print("\nDo you want to continue Operations? (y/n): ");
              continueChoice = sc.next().charAt(0);
 
         } while (continueChoice == 'y' || continueChoice == 'Y');

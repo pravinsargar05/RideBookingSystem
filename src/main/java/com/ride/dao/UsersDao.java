@@ -47,7 +47,7 @@ public class UsersDao {
 		
 	}
 
-	public List<Users> displayById(int id) {
+	public List<Users> displayById(long id) {
 
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Users> query = cb.createQuery(Users.class);
@@ -59,7 +59,7 @@ public class UsersDao {
 		return typedQuery.getResultList();
 	}
 
-	public boolean checkUser(int id) {
+	public boolean checkUser(long id) {
 
 	    Users user = em.find(Users.class, id);
 
@@ -70,7 +70,7 @@ public class UsersDao {
 	        return false;
 	    }
 	}
-	public void updateName(int id, String name) {
+	public void updateName(long id, String name) {
 
 	    Users user = em.find(Users.class, id);
 
@@ -84,7 +84,7 @@ public class UsersDao {
 	        System.out.println("Name updated successfully.");
 	    }
 	}
-	public void updateEmail(int id, String email) {
+	public void updateEmail(long id, String email) {
 
 	    Users user = em.find(Users.class, id);
 
@@ -98,7 +98,7 @@ public class UsersDao {
 	        System.out.println("Email updated successfully.");
 	    }
 	}
-	public void updatePhone(int id, long phone) {
+	public void updatePhone(long id, long phone) {
 
 	    Users user = em.find(Users.class, id);
 
@@ -112,7 +112,7 @@ public class UsersDao {
 	        System.out.println("Phone updated successfully.");
 	    }
 	}
-	public void deleteData(int id) {
+	public void deleteData(long id) {
 
 		Users users = em.find(Users.class, id);
 		if (users != null) {
