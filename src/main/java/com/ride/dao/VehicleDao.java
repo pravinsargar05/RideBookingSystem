@@ -6,9 +6,10 @@ import java.util.Scanner;
 import com.ride.entity.Driver;
 import com.ride.entity.Vehicle;
 import com.ride.enums.VehicleType;
-import com.ride.main.Connection;
+
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -16,7 +17,7 @@ import jakarta.persistence.criteria.Root;
 
 public class VehicleDao {
 	static Scanner sc = new Scanner(System.in);
-	static EntityManager em = Connection.getEntityManagerFactory().createEntityManager();
+	static EntityManager em = Persistence.createEntityManagerFactory("pravin").createEntityManager();
 
 	public void insert(long id) {
 

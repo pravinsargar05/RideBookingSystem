@@ -12,32 +12,57 @@ import com.ride.enums.DriverStatus;
 import com.ride.enums.RideStatus;
 import com.ride.enums.TransactionStatus;
 import com.ride.enums.TransactionType;
-import com.ride.main.Connection;
+
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 public class TransactionDao {
-	static EntityManager em = Connection.getEntityManagerFactory().createEntityManager();
+	static EntityManager em = Persistence.createEntityManagerFactory("pravin").createEntityManager();
 	Transaction tran = new Transaction();
 	Rides ride = new Rides();
 	Driver dr = new Driver();
 	public void insertCash(long id) {
 		Users users = em.find(Users.class, id);
-		if(users!=null) {
-			tran.setUsers(users);
-			tran.setType(TransactionType.CASH);
-			tran.setStatus(TransactionStatus.COMPLETED);
-			em.getTransaction().begin();
-			em.persist(tran);
-			em.getTransaction().commit();
-			System.out.println(" Cash Transaction Completed..");
-		}else {
-			System.out.println("Data not found..");
-		}
+
+	    CriteriaBuilder cb = em.getCriteriaBuilder();
+	    CriteriaQuery<Rides> query = cb.createQuery(Rides.class);
+	    Root<Rides> root = query.from(Rides.class);
+
+	    query.select(root)
+	         .where(cb.equal(root.get("users").get("id"), users.getId()))
+	         .orderBy(cb.desc(root.get("id")));
+
+	    TypedQuery<Rides> query2 = em.createQuery(query);
+	    Rides ride = query2.getSingleResult();
+
+
+	    if (ride!=null) {
+
+	        tran.setUsers(users);
+	        tran.setType(TransactionType.CASH);
+	        tran.setStatus(TransactionStatus.COMPLETED);
+
+	        ride.setStatus(RideStatus.COMPLETED);
+	        Driver driver = ride.getDriver();
+	        driver.setDriverStatus(DriverStatus.AVALIBLE);
+
+	        em.getTransaction().begin();
+
+	        em.merge(driver); // update existing driver
+	        em.merge(ride);   // update existing ride
+	        em.persist(tran); // insert new transaction only
+	        em.getTransaction().commit();
+
+	        System.out.println("Cash Transaction Completed..");
+
+	    } else {
+	        System.out.println("Data not found..");
+	    }
 	}
 	public void insertCard(long id) {
 
@@ -80,22 +105,41 @@ public class TransactionDao {
 	}
 	public void insertUpi(long id) {
 		Users users = em.find(Users.class, id);
-		
-		if(users!=null) {
-			tran.setUsers(users);
-			tran.setType(TransactionType.UPI);
-			tran.setStatus(TransactionStatus.COMPLETED);
-			ride.setStatus(RideStatus.COMPLETED);
-			dr.setDriverStatus(DriverStatus.AVALIBLE);
-			em.getTransaction().begin();
-			em.persist(tran);
-			em.merge(ride);
-			em.merge(dr);
-			em.getTransaction().commit();
-			System.out.println(" UPI Transaction Completed..");
-		}else {
-			System.out.println("Data not found..");
-		}
+
+	    CriteriaBuilder cb = em.getCriteriaBuilder();
+	    CriteriaQuery<Rides> query = cb.createQuery(Rides.class);
+	    Root<Rides> root = query.from(Rides.class);
+
+	    query.select(root)
+	         .where(cb.equal(root.get("users").get("id"), users.getId()))
+	         .orderBy(cb.desc(root.get("id")));
+
+	    TypedQuery<Rides> query2 = em.createQuery(query);
+	    Rides ride = query2.getSingleResult();
+
+
+	    if (ride!=null) {
+
+	        tran.setUsers(users);
+	        tran.setType(TransactionType.UPI);
+	        tran.setStatus(TransactionStatus.COMPLETED);
+
+	        ride.setStatus(RideStatus.COMPLETED);
+	        Driver driver = ride.getDriver();
+	        driver.setDriverStatus(DriverStatus.AVALIBLE);
+
+	        em.getTransaction().begin();
+
+	        em.merge(driver); // update existing driver
+	        em.merge(ride);   // update existing ride
+	        em.persist(tran); // insert new transaction only
+	        em.getTransaction().commit();
+
+	        System.out.println("UPI Transaction Completed..");
+
+	    } else {
+	        System.out.println("Data not found..");
+	    }
 	}
 	
 	public void cancelTran(long id) {

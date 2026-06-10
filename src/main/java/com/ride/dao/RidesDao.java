@@ -10,11 +10,11 @@ import com.ride.entity.Vehicle;
 import com.ride.enums.DriverStatus;
 import com.ride.enums.RideStatus;
 import com.ride.enums.VehicleType;
-import com.ride.main.Connection;
 
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -22,7 +22,7 @@ import jakarta.persistence.criteria.Root;
 
 public class RidesDao {
 	static Scanner sc = new Scanner(System.in);
-	static EntityManager em = Connection.getEntityManagerFactory().createEntityManager();
+	static EntityManager em = Persistence.createEntityManagerFactory("pravin").createEntityManager();
 	static Rides r = new Rides();
 	static Driver d = new Driver();
 	static Users u = new Users();

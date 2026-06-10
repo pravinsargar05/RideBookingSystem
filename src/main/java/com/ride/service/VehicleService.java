@@ -89,7 +89,7 @@ public class VehicleService {
                 default: {
                     System.out.println("Invalid Choice...");
                 }
-            }System.out.print("\nDo you want to continue Vehicle Operations? (y/n): ");
+            }System.out.print("\nDo you want to continue  Operations? (y/n): ");
             continueChoice = sc.next().charAt(0);
 
         } while (continueChoice == 'y' || continueChoice == 'Y');

@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.ride.entity.Users;
-import com.ride.main.Connection;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -14,7 +14,7 @@ import jakarta.persistence.criteria.Root;
 
 public class UsersDao {
 	static Scanner sc = new Scanner(System.in);
-	static EntityManager em = Connection.getEntityManagerFactory().createEntityManager();
+	static EntityManager em = Persistence.createEntityManagerFactory("pravin").createEntityManager();
 	Users users = new Users();
 
 	public void insert(String name,String Email,long phone,double W_bal) {
