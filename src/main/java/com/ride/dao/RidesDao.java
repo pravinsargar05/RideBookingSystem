@@ -46,6 +46,7 @@ public class RidesDao {
 		
 		if(vehicle.getType()==VehicleType.BIKE) {
 			 fare = distance * 20;
+			 
 		}else if(vehicle.getType()==VehicleType.AUTO) {
 			 fare = distance * 25;
 		}else if(vehicle.getType()==VehicleType.MINI) {

@@ -60,7 +60,7 @@ public class TransactionService {
 					tr.insertCash(u);
 					break;
 				case 2:
-					tr.insertUpi(choice2);
+					tr.insertUpi(u);
 					break;
 				case 3:
 					tr.insertCard(u);

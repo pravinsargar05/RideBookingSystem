@@ -50,7 +50,7 @@ public class TransactionDao {
 	        ride.setStatus(RideStatus.COMPLETED);
 	        Driver driver = ride.getDriver();
 	        driver.setDriverStatus(DriverStatus.AVALIBLE);
-
+	        users.setWallet_balancd(users.getWallet_balancd()-ride.getFare());
 	        em.getTransaction().begin();
 
 	        em.merge(driver); // update existing driver
@@ -89,7 +89,7 @@ public class TransactionDao {
 	        ride.setStatus(RideStatus.COMPLETED);
 	        Driver driver = ride.getDriver();
 	        driver.setDriverStatus(DriverStatus.AVALIBLE);
-
+	        users.setWallet_balancd(users.getWallet_balancd()-ride.getFare());
 	        em.getTransaction().begin();
 
 	        em.merge(driver); // update existing driver
@@ -127,7 +127,7 @@ public class TransactionDao {
 	        ride.setStatus(RideStatus.COMPLETED);
 	        Driver driver = ride.getDriver();
 	        driver.setDriverStatus(DriverStatus.AVALIBLE);
-
+	        users.setWallet_balancd(users.getWallet_balancd()-ride.getFare());
 	        em.getTransaction().begin();
 
 	        em.merge(driver); // update existing driver
